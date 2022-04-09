@@ -11,13 +11,9 @@ Objetivo: Criar uma solução para coletar e armazenar os dados da plataforma we
 Dados desejados:
 
 -Nome do livro
-
 -Categoria 
-
 -Número de estrelas
-
 -Preço
-
 -Disponibilidade do livro: em estoque ou não
 
 Link da plataforma: http://books.toscrape.com
@@ -28,4 +24,9 @@ Esse projeto foi dividido em fases de construção.
 
 1º fase - Criação de um script python utilizando a biblioteca BeautifulSoup para a coleta dos dados e a biblioteca Selenium para a navegação entre as páginas 
 
+O funcionamento do script acontece da seguinte forma:
+-Navegação para a página principal da plataforma e print da página utilizando a biblioteca Selenium
+-Download da estrutura da página html utilizando a biblioteca BeautifulSoup 
+-Navegação por todas as páginas da plataforma, coletando e armazenando os links da página de cada livro encontrado dentro de uma lista
+-Navegação por cada página do livro para coletar os dados desejados e armazená-los dentro de um arquivo no formato csv
 
