@@ -13,7 +13,7 @@ _Objetivo_: Criar uma solução para coletar e armazenar os dados da plataforma 
 Dados desejados:
 
 * Nome do livro
-* Categoria 
+* Categoria do livro
 * Número de estrelas
 * Preço
 * Disponibilidade do livro: em estoque ou não
@@ -35,7 +35,7 @@ O funcionamento do script acontece da seguinte forma:
 ### Repositório do Projeto
 
 Nesse repositório encontram-se os seguintes arquivos:
-* Script python: bookclub_webscraper.py
+* Script python: bookclub_webscraper.py 
 * Arquivo dos dados coletados: data_bookclub.csv
 
 
