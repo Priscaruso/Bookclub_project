@@ -8,15 +8,15 @@ usuário dá direito à uma troca, mas o usuário também pode comprar o livro, 
 Uma das ferramentas mais importantes para que esse modelo de negócio rentabilize, é a recomendação. Uma excelente recomendação aumenta o volume de 
 trocas e vendas no site. No entanto, a empresa não coleta e nem armazena os livros enviados pelos usuários em um banco de dados. Os livros são apenas enviados pelos usuários atráves de um botão "Fazer Upload", ficando visíveis na plataforma, junto com suas estrelas, que representam o quanto os usuários gostaram do livro.
 
-Objetivo: Criar uma solução para coletar e armazenar os dados da plataforma web fictícia de troca de livros.
+_Objetivo_: Criar uma solução para coletar e armazenar os dados da plataforma web fictícia de troca de livros.
 
 Dados desejados:
 
--Nome do livro
--Categoria 
--Número de estrelas
--Preço
--Disponibilidade do livro: em estoque ou não
+* Nome do livro
+* Categoria 
+* Número de estrelas
+* Preço
+* Disponibilidade do livro: em estoque ou não
 
 Link da plataforma: http://books.toscrape.com
 
@@ -35,9 +35,9 @@ O funcionamento do script acontece da seguinte forma:
 ### Repositório do Projeto
 
 Nesse repositório encontram-se os seguintes arquivos:
--Script python:
--Arquivo dos dados coletados: data_bookclub.csv
--Script bash:
+* Script python:
+* Arquivo dos dados coletados: data_bookclub.csv
+
 
 ------------------------------------------------------------------------------------------------------
 🇺🇸
