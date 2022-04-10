@@ -22,20 +22,20 @@ Link da plataforma: http://books.toscrape.com
 
 Esse projeto foi dividido em fases de construção.
 
-### Fases do Projeto
+## Fases do Projeto
 
-1º fase - Criação de um script python utilizando a biblioteca BeautifulSoup para a coleta dos dados e a biblioteca Selenium para a navegação entre as páginas 
+1ª fase - Criação de um script python utilizando a biblioteca BeautifulSoup para a coleta dos dados e a biblioteca Selenium para a navegação entre as páginas 
 
 O funcionamento do script acontece da seguinte forma:
--Navegação para a página principal da plataforma e print da página utilizando a biblioteca Selenium
--Download da estrutura da página html utilizando a biblioteca BeautifulSoup 
--Navegação por todas as páginas da plataforma, coletando e armazenando os links da página de cada livro encontrado dentro de uma lista
--Navegação por cada página do livro para coletar os dados desejados e armazená-los dentro de um arquivo no formato csv
+* Navegação para a página principal da plataforma e print da página utilizando a biblioteca Selenium
+* Download da estrutura da página html utilizando a biblioteca BeautifulSoup 
+* Navegação por todas as páginas da plataforma, coletando e armazenando os links da página de cada livro encontrado dentro de uma lista
+* Navegação por cada página do livro para coletar os dados desejados e armazená-los dentro de um arquivo no formato csv
 
 ### Repositório do Projeto
 
 Nesse repositório encontram-se os seguintes arquivos:
-* Script python:
+* Script python: bookclub_webscraper.py
 * Arquivo dos dados coletados: data_bookclub.csv
 
 
