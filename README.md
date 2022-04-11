@@ -35,7 +35,7 @@ O funcionamento do script acontece da seguinte forma:
 ### Repositório do Projeto
 
 Nesse repositório encontram-se os seguintes arquivos:
-* Script python: bookclub_webscraper.py https://github.com/Priscaruso/Bookclub_project/blob/fb0eaccd567b62fe5167e77775a56d1ca2966bd2/bookclub_webscraper.py
+* Script python: bookclub_webscraper.py 
 * Arquivo dos dados coletados: data_bookclub.csv
 
 
