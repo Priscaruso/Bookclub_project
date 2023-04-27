@@ -29,13 +29,11 @@ Esse projeto está dividido em fases de construção.
 
 ## Fases do Projeto
 
-1ª fase - Criação de um script python utilizando a biblioteca BeautifulSoup para a coleta dos dados e a biblioteca Selenium para a navegação entre as páginas 
+1ª fase - Criação de um script python que define as funções para a coleta dos dados 
 
 O funcionamento do script acontece da seguinte forma:
-* Navegação para a página principal da plataforma e print da página utilizando a biblioteca Selenium
-* Download da estrutura da página html utilizando a biblioteca BeautifulSoup 
-* Navegação por todas as páginas da plataforma, coletando e armazenando os links da página de cada livro encontrado dentro de uma lista
-* Navegação por cada página do livro para coletar os dados desejados e armazená-los dentro de um arquivo no formato csv
+* Função _"get_book_links"_ navega por todas as páginas da plataforma, coletando e armazenando os links da página de cada livro encontrado dentro de uma lista usando as bibliotecas Selenium e BeautifulSoup 
+* Função _"get_book_data"_ navega por cada página do livro para coletar os dados desejados e armazená-los dentro de uma lista
 
 2ª fase - Modelagem dos dados
 
