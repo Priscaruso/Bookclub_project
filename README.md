@@ -8,6 +8,17 @@ usuário dá direito à uma troca, mas o usuário também pode comprar o livro, 
 Uma das ferramentas mais importantes para que esse modelo de negócio rentabilize, é a recomendação. Uma excelente recomendação aumenta o volume de 
 trocas e vendas no site. No entanto, a empresa não coleta e nem armazena os livros enviados pelos usuários em um banco de dados. Os livros são apenas enviados pelos usuários através de um botão "Fazer Upload", ficando visíveis na plataforma, junto com suas estrelas, que representam o quanto os usuários gostaram do livro.
 
+## Tópicos do projeto
+
+:small_blue_diamond: [Arquitetura dos dados](#arquitetura-dos-dados)
+
+:small_blue_diamond: [Pré-requisitos](#pré-requisitos)
+
+:small_blue_diamond: [Fases do Projeto](#fases-do-projeto)
+
+:small_blue_diamond: [Execução](#execução-do-projeto)
+
+
 ## Objetivo
 Criar uma solução para coletar, armazenar e analisar os dados da plataforma web fictícia de troca de livros usando os serviços da nuvem AWS.
 
@@ -20,16 +31,6 @@ Dados desejados:
 * Disponibilidade do livro: em estoque ou não
 
 Link da plataforma: http://books.toscrape.com
-
-### Tópicos do projeto
-
-:small_blue_diamond: [Arquitetura dos dados](#arquitetura-dos-dados)
-
-:small_blue_diamond: [Pré-requisitos](#pré-requisitos-do-projeto)
-
-:small_blue_diamond: [Fases do Projeto](#fases-do-projeto)
-
-:small_blue_diamond: [Execução](#execução-do-projeto)
 
 
 ## Arquitetura dos dados
