@@ -55,7 +55,7 @@ Essa fase é subdividida em 3 passos:
 * Criação do banco de dados 
 * Inserção dos dados no banco
   
-3ª fase - Construção do datalake
+3ª fase - Construção do Datalake
 
 4ª fase - Migração dos dados
 
