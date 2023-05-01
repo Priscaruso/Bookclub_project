@@ -47,30 +47,32 @@ Esse projeto está dividido em fases de construção.
 
 ## Fases do Projeto
 
-1ª fase - Criação do script python [bookclub_webscraper.py](https://github.com/Priscaruso/Bookclub_project/blob/main/bookclub_webscraper.py) que define as funções para a coleta dos dados da plataforma 
+### 1ª fase - Coleta dos dados
+
+Criação do script python [bookclub_webscraper.py](https://github.com/Priscaruso/Bookclub_project/blob/main/bookclub_webscraper.py) que define as funções para a coleta dos dados da plataforma.
 
 O funcionamento do script acontece da seguinte forma:
 * Função _"get_book_links"_ navega por todas as páginas da plataforma, coletando e armazenando os links da página de cada livro encontrado dentro de uma lista usando as bibliotecas Selenium e BeautifulSoup 
 * Função _"get_book_data"_ navega por cada página do livro para coletar os dados desejados e armazená-los dentro de uma lista
 
-2ª fase - Armazenamento dos dados
+### 2ª fase - Armazenamento dos dados
 
 Essa fase é subdividida em 3 passos:
 * Modelagem dos dados
 * Criação do banco de dados 
 * Inserção dos dados no banco
   
-3ª fase - Construção do Datalake
+### 3ª fase - Construção do Datalake
 
-4ª fase - Migração dos dados
+### 4ª fase - Migração dos dados
 
-5ª fase - Processamento dos dados
+### 5ª fase - Processamento dos dados
 
-6ª fase - Construção do Data Warehouse 
+### 6ª fase - Construção do Data Warehouse 
 
-7ª fase - Consulta dos dados 
+### 7ª fase - Consulta dos dados 
 
-8ª fase - Visualização dos dados
+### 8ª fase - Visualização dos dados
 
 
 
