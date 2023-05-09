@@ -59,8 +59,13 @@ O funcionamento do script acontece da seguinte forma:
 
 Essa fase é subdividida em 3 passos:
 * Modelagem dos dados
-* Criação do banco de dados 
+  Criação do script python [data_model.py] que cria a tabela book que será armazenado dentro do banco books no RDS.  
+  
+* Criação do banco de dados
+ Construção de um cluster RDS na nuvem AWS para armazenar os dados, conforme mostra a figura abaixo: 
+
 * Inserção dos dados no banco
+  Dentro do script python [data_model.py]() é chamada a função _"get_book_data"_ para coletar os dados da plataforma e poder realizar a inserção desses dados na tabela books dentro do banco no RDS.
   
 ### 3ª fase - Construção do Datalake
 
