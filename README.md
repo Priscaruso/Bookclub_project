@@ -93,6 +93,22 @@ Essa fase é subdividida em 3 passos:
 Após a criação das funções, é configurado os parâmetros de navegação para a biblioteca selenium, é criado o objeto de navegação, é chamada a função _get_book_links_ e _"get_book_data"_ para coletar os dados da plataforma. Os dados são transformados em dataframe, é chamado a função _create_table_ para criar a tabela, são realizadas as transformações necessárias nos dados (como remoção de apóstrofes e sinais de % em strings) e feita a inserção desses dados na tabela books dentro do banco bookclub no RDS.
   
 ### 3ª fase - Construção do Datalake
+Nesta fase é criado o Datalake usando o Amazon S3, que é um repositório de objetos. 
+São criadas três camadas para armazenar os dados:
+  * raw-bookclub - é a camada raw, também conhecida como bronze, onde ficam os dados brutos no seu formato original (geralmente CSV)
+  
+     ![bucket raw](https://github.com/Priscaruso/Bookclub_project/assets/83982164/e9f615da-84ab-4862-8009-c3b3974541a9)
+
+  
+  * processed-bookclub  - é a camada processed, também conhecida como silver, onde ficam os dados que foram transformados para o formato delta, mais otimizado para serem usados na nuvem pelos cientistas e analistas de dados
+  
+    ![bucket processed](https://github.com/Priscaruso/Bookclub_project/assets/83982164/80bec75d-8486-4ae6-9f6a-9de3302586b8)
+
+  * curated-bookclub - é a camada curated, também conhecida como gold, onde ficam armazenadas as tabelas analíticas, também em formato delta, já transformadas conforme os requisitos da área de negócio, para serem usadas pelos analistas de negócios
+  
+    ![bucket curated](https://github.com/Priscaruso/Bookclub_project/assets/83982164/8c53685d-6385-4d03-b157-7a1c0f0c62f4)
+
+
 
 ### 4ª fase - Migração dos dados
 
