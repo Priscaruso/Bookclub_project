@@ -64,12 +64,24 @@ Essa fase é subdividida em 3 passos:
   
   ![Banco de dados RDS](https://github.com/Priscaruso/Bookclub_project/assets/83982164/3212367c-f903-4a63-bef8-c0bcbb9338b7)
 
-   A região selecionada foi a de Oregon nos EUA (us-west-2) e a máquina foi a db.t3.micro por questões de custo e que atende ao volume de 
- dados necessário para esse projeto.
+   A região selecionada foi a de Oregon nos EUA (us-west-2) e a máquina foi a db.t3.micro por questões de custo e para atender ao volume de dados necessário para esse projeto.
  
 * Modelagem dos dados
 
-  Criação do script python [data_model.py] que cria a tabela books que será armazenada dentro do banco bookclub no RDS. O schema da tabela é apresentado a seguir:
+  Criação do script python [data_model.py] que cria as seguintes funções:
+  * Função _check_if_valid_data_ que verifica se os dados coletados apresentam dados ausentes ou não
+  * Função _connect_db_ que cria uma conexão com o banco bookclub no RDS usando a url do host, o nome do banco, o usuário padrão do banco, a senha de acesso criada e a porta de conexão. Tanto o usuário como a senha de acesso são armazenados em um arquivo .env no ambiente virtual criado para o projeto, por meio da biblioteca python dotenv, a fim de garantir a segurança dos dados.
+  * Função _create_table_ que gera a tabela desejada a partir da execução de uma query, sendo esta tabela armazenada dentro do banco bookclub no RDS. O schema da tabela é apresentado a seguir:
+    
+    | Column | Data Type |
+    | :---: | :---: |
+    | id | int autoincremental sequence, PRIMARY KEY |
+    | name | varchar(250) |
+    | category | varchar(20) |
+    | stars | varchar(5) |
+    | price | float |
+    | availability | varchar(10) |
+    
   
  
 * Inserção dos dados no banco
