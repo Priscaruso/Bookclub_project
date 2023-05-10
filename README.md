@@ -58,14 +58,22 @@ O funcionamento do script acontece da seguinte forma:
 ### 2ª fase - Armazenamento dos dados
 
 Essa fase é subdividida em 3 passos:
-* Modelagem dos dados
-  Criação do script python [data_model.py] que cria a tabela book que será armazenado dentro do banco books no RDS.  
-  
 * Criação do banco de dados
- Construção de um cluster RDS na nuvem AWS para armazenar os dados, conforme mostra a figura abaixo: 
 
+  Construção de uma instância RDS PostgreSQL na nuvem AWS para armazenar os dados operacionais da plataforma, conforme mostra a figura abaixo: 
+  
+  ![Banco de dados RDS](https://github.com/Priscaruso/Bookclub_project/assets/83982164/3212367c-f903-4a63-bef8-c0bcbb9338b7)
+
+   A região selecionada foi a de Oregon nos EUA (us-west-2) e a máquina foi a db.t3.micro por questões de custo e que atende ao volume de 
+ dados necessário para esse projeto.
+ 
+* Modelagem dos dados
+
+  Criação do script python [data_model.py] que cria a tabela books que será armazenada dentro do banco bookclub no RDS. O schema da tabela é apresentado a seguir:
+  
+ 
 * Inserção dos dados no banco
-  Dentro do script python [data_model.py]() é chamada a função _"get_book_data"_ para coletar os dados da plataforma e poder realizar a inserção desses dados na tabela books dentro do banco no RDS.
+  Dentro do script python [data_model.py]() é chamada a função _"get_book_data"_ para coletar os dados da plataforma e poder realizar a inserção desses dados na tabela books dentro do banco bookclub no RDS.
   
 ### 3ª fase - Construção do Datalake
 
