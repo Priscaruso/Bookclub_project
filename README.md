@@ -55,6 +55,7 @@ O funcionamento do script acontece da seguinte forma:
 * Função _"get_book_links"_ navega por todas as páginas da plataforma, coletando e armazenando os links da página de cada livro encontrado dentro de uma lista usando as bibliotecas Selenium e BeautifulSoup 
 * Função _"get_book_data"_ navega por cada página do livro para coletar os dados desejados e armazená-los dentro de uma lista
 
+
 ### 2ª fase - Armazenamento dos dados
 
 Essa fase é subdividida em 3 passos:
@@ -91,7 +92,8 @@ Essa fase é subdividida em 3 passos:
     * Função _consulta_db_ que permite realizar consulta dos dados no banco por meio de uma query e retorna os dados na forma de lista
 
 Após a criação das funções, é configurado os parâmetros de navegação para a biblioteca selenium, é criado o objeto de navegação, é chamada a função _get_book_links_ e _"get_book_data"_ para coletar os dados da plataforma. Os dados são transformados em dataframe, é chamado a função _create_table_ para criar a tabela, são realizadas as transformações necessárias nos dados (como remoção de apóstrofes e sinais de % em strings) e feita a inserção desses dados na tabela books dentro do banco bookclub no RDS.
-  
+
+
 ### 3ª fase - Construção do Datalake
 Nesta fase é criado o Datalake usando o Amazon S3, que é um repositório de objetos. 
 São criadas três camadas para armazenar os dados:
@@ -107,7 +109,6 @@ São criadas três camadas para armazenar os dados:
   * curated-bookclub - é a camada curated, também conhecida como gold, onde ficam armazenadas as tabelas analíticas, também em formato delta, já transformadas conforme os requisitos da área de negócio, para serem usadas pelos analistas de negócios
   
     ![bucket curated](https://github.com/Priscaruso/Bookclub_project/assets/83982164/8c53685d-6385-4d03-b157-7a1c0f0c62f4)
-
 
 
 ### 4ª fase - Migração dos dados
@@ -132,10 +133,11 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
     ![tarefa de migração parte 2](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5ba7ca5c-df11-4a1d-b0dc-bbce689581b1)
 
 
-  
-
-
 ### 5ª fase - Processamento dos dados
+Nesta etapa é utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é cluster (uma máquina EC2), que vem com as bibliotecas necessárias já instaladas o que facilita e economiza tempo, além de só cobrar pelo tempo de uso da máquina, podendo processar a quantidade que desejar nesse período, sem ter aumento de custo por conta disso. 
+O processamento dos dados consiste nos seguintes passos:
+  * Criar um cluster EMR contendo somente a aplicação Spark versão 
+  * Criar um job por meio de um script python
 
 ### 6ª fase - Construção do Data Warehouse 
 
@@ -143,6 +145,11 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
 
 ### 8ª fase - Visualização dos dados
 
+
+### Próximos passos
+Com o desejo de evoluir o projeto e torná-lo ainda mais completo, quero incluir nos próximos meses as seguintes funcionalidades:
+  * Orquestrar o pipeline usando o Airflow
+  * Criar toda infraestrutura como código (IaC) usando o Terraform
 
 
 ### Repositório do Projeto
