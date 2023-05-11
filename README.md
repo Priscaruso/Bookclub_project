@@ -10,13 +10,15 @@ trocas e vendas no site. No entanto, a empresa não coleta e nem armazena os liv
 
 ## Tópicos do projeto
 
+:small_blue_diamond: [Objetivo](#objetivo)
+
 :small_blue_diamond: [Arquitetura dos dados](#arquitetura-dos-dados)
 
 :small_blue_diamond: [Pré-requisitos](#pré-requisitos)
 
 :small_blue_diamond: [Fases do Projeto](#fases-do-projeto)
 
-:small_blue_diamond: [Execução](#execução-do-projeto)
+:small_blue_diamond: [Próximos passos](#próximos-passos)
 
 
 ## Objetivo
@@ -146,18 +148,10 @@ O processamento dos dados consiste nos seguintes passos:
 ### 8ª fase - Visualização dos dados
 
 
-### Próximos passos
+## Próximos passos
 Com o desejo de evoluir o projeto e torná-lo ainda mais completo, quero incluir nos próximos meses as seguintes funcionalidades:
   * Orquestrar o pipeline usando o Airflow
   * Criar toda infraestrutura como código (IaC) usando o Terraform
-
-
-### Repositório do Projeto
-
-Nesse repositório encontram-se os seguintes arquivos:
-* Script python: bookclub_webscraper.py 
-* Arquivo dos dados coletados: data_bookclub.csv
-
 
 ------------------------------------------------------------------------------------------------------
 
