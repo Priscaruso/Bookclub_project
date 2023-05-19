@@ -139,8 +139,13 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
 Nesta etapa é utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que vem com as bibliotecas necessárias já instaladas o que facilita e economiza tempo, além de só cobrar pelo tempo de uso da máquina, podendo processar a quantidade que desejar nesse período, sem ter aumento de custo por conta disso. 
 O processamento dos dados consiste nos seguintes passos:
   * Criar um cluster EMR contendo somente a aplicação Spark versão 3.3.0
+  
+    ![cluster EMR - versão editada](https://github.com/Priscaruso/Bookclub_project/assets/83982164/89a21f7b-3fcf-4ef6-99a4-f2888e5f1515)
+
   * Criar um job spark por meio de uma aplicação pyspark 
-    Essa aplicação é responsável por fazer as transformações desejadas nos dados e inserí-los na camada processed (bucket processed-bookclub). Ela também gera as tabelas analíticas conforme os requisitos solicitados pela área de negócios e carrega-as tanto na camada curated (bucket curated-bookclub) do datalake como no Data Warehouse, que é o Amazon Redshift.  
+    A aplicação é responsável por fazer as transformações desejadas nos dados e inserí-los na camada processed (bucket processed-bookclub). Ela também gera as tabelas analíticas conforme os requisitos solicitados pela área de negócios e carrega-as tanto na camada curated (bucket curated-bookclub) do datalake como no Data Warehouse, que é o Amazon Redshift. Essa aplicação pyspark de nome _job_spark_app_emr_redshift.py_ pode ser encontrada dentro da pasta processing deste repositório.
+   
+
 
 ### 6ª fase - Construção do Data Warehouse 
 
