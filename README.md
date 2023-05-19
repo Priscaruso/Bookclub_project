@@ -117,17 +117,17 @@ São criadas três camadas para armazenar os dados:
 Para que as transformações e análises dos dados possam ser realizadas, os dados necessitam estar armazenados em um local apropriado
 para isso e que tenha condições de receber constantemente novos dados, ou seja, seja escalável. Assim, o DataLake é o local ideal
 para realizar o armazenamento desses dados. Para que isso seja possível, é preciso realizar a migração dos dados brutos contidos no RDS para a camada raw do DataLake (bucket raw-bookclub). Nesse projeto é usado o Database Migration Service da AWS. A migração é feita de acordo com os seguintes passos:
-  * Criar de uma instância de replicação no DMS (dms-instance-01)
+  * Criar uma instância de replicação no DMS (dms-instance-01)
   
     ![instância de replicação DMS](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bf598a55-b25e-4fc4-a981-487922842d28)
 
   
-  * Criar dos endpoints de origem (rds-source-postgresql), que conecta o DMS com o RDS, e de destino (s3-target-datalake), que conecta o DMS com o Datalake S3
+  * Criar os endpoints de origem (rds-source-postgresql), que conecta o DMS com o RDS, e de destino (s3-target-datalake), que conecta o DMS com o Datalake S3
   
     ![endpoints](https://github.com/Priscaruso/Bookclub_project/assets/83982164/aa964165-ecc1-4d90-bdf7-94e1937d49b3)
 
   
-  * Testar os endspoints para verificar se a conexão entre o RDS, o DMS e o S3 oestá funcionando corretamente
+  * Testar os endspoints para verificar se a conexão entre o RDS, o DMS e o S3 está funcionando corretamente
     
   
   * Criar uma tarefa de migração (task-01) usando a instância de replicação e os endpoints gerados
