@@ -93,7 +93,7 @@ Essa fase é subdividida em 3 passos:
     * Função _insert_data_ para inserir os dados no banco a partir de uma query e dos valores das variáveis armazenados por meio de uma tupla
     * Função _consulta_db_ que permite realizar consulta dos dados no banco por meio de uma query e retorna os dados na forma de lista
 
-Após a criação das funções, é configurado os parâmetros de navegação para a biblioteca selenium, é criado o objeto de navegação, é chamada a função _get_book_links_ e _"get_book_data"_ para coletar os dados da plataforma. Os dados são transformados em dataframe, é chamado a função _create_table_ para criar a tabela, são realizadas as transformações necessárias nos dados (como remoção de apóstrofes e sinais de % em strings) e feita a inserção desses dados na tabela books dentro do banco bookclub no RDS.
+Após a criação das funções, é configurado os parâmetros de navegação para a biblioteca selenium, é criado o objeto de navegação, é chamada a função _get_book_links_ e _get_book_data_ para coletar os dados da plataforma. Os dados são transformados em dataframe, é chamada a função _create_table_ para criar a tabela books dentro do RDS, são realizadas as transformações necessárias nos dados (remoção de apóstrofes e sinais de % em strings) e feita a inserção desses dados na tabela books dentro do banco bookclub no RDS.
 
 
 ### 3ª fase - Construção do Datalake
