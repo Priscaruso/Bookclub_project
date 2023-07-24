@@ -137,7 +137,7 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
 
 
 ### 5ª fase - Processamento dos dados
-Nesta etapa é utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que vem com as bibliotecas necessárias já instaladas o que facilita e economiza tempo, além de só cobrar pelo tempo de uso da máquina, podendo processar a quantidade de dados que desejar nesse período, sem ter aumento de custo por conta disso. 
+Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que vem com as bibliotecas necessárias já instaladas o que facilita e economiza tempo, além de só cobrar pelo tempo de uso da máquina, podendo processar a quantidade de dados que desejar nesse período, sem ter aumento de custo por conta disso. 
 O processamento dos dados consiste nos seguintes passos:
   * Criar um cluster EMR contendo somente a aplicação Spark versão 3.3.0
   
@@ -147,9 +147,13 @@ O processamento dos dados consiste nos seguintes passos:
   
     O job spark é uma tarefa que será executada pelo cluster EMR, no caso, a aplicação pyspark criada. A aplicação é responsável por fazer as transformações desejadas nos dados e inserí-los na camada processed (bucket processed-bookclub). Ela também gera as tabelas analíticas conforme os requisitos solicitados pela área de negócios e carrega-as tanto na camada curated (bucket curated-bookclub) do datalake como no Data Warehouse, que é o Amazon Redshift. Essa aplicação pyspark de nome [job_spark_app_emr_redshift.py](https://github.com/Priscaruso/Bookclub_project/blob/main/processing/job_spark_app_emr_redshift.py) pode ser encontrada dentro da pasta processing deste repositório.
    
-
+Para executar o job spark, primeiro necessita mover a aplicação criada para dentro do cluster EMR,
 
 ### 6ª fase - Construção do Data Warehouse 
+O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights através dos dados que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, que recebe as tabelas analíticas geradas na camada curated do S3.
+Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1 usando um nó do tipo dc2.large (nível gratuito), conforme mostra a figura abaixo:
+
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bb0494fb-2889-4dcf-8890-727ee2771694)
 
 ### 7ª fase - Consulta dos dados 
 
