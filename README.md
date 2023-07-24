@@ -116,7 +116,7 @@ São criadas três camadas para armazenar os dados:
 ### 4ª fase - Migração dos dados
 Para que as transformações e análises dos dados possam ser realizadas, os dados necessitam estar armazenados em um local apropriado
 para isso e que tenha condições de receber constantemente novos dados, ou seja, seja escalável. Assim, o DataLake é o local ideal
-para realizar o armazenamento desses dados. Para que isso seja possível, é preciso realizar a migração dos dados brutos contidos no RDS para a camada raw do DataLake (bucket raw-bookclub). Nesse projeto é usado o Database Migration Service da AWS. A migração é feita de acordo com os seguintes passos:
+para realizar o armazenamento desses dados. Para que isso seja possível, é preciso realizar a migração dos dados brutos contidos no RDS para a camada raw do DataLake (bucket raw-bookclub). Nesse projeto é usado o Database Migration Service da AWS, que apesar de ter um custo mais elevado quando se tem um grande volume de dados, é fácil de usar e realiza a migração de forma mais rápida. A migração é feita de acordo com os seguintes passos:
   * Criar uma instância de replicação no DMS (dms-instance-01)
   
     ![instância de replicação DMS](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bf598a55-b25e-4fc4-a981-487922842d28)
