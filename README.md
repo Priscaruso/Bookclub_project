@@ -119,9 +119,10 @@ para isso e que tenha condições de receber constantemente novos dados, ou seja
 para realizar o armazenamento desses dados. Para que isso seja possível, é preciso realizar a migração dos dados brutos contidos no RDS para a camada raw do DataLake (bucket raw-bookclub). Nesse projeto é usado o Database Migration Service da AWS, que apesar de ter um custo mais elevado quando se tem um grande volume de dados, é fácil de usar e realiza a migração de forma mais rápida. A migração é feita de acordo com os seguintes passos:
   * Criar uma instância de replicação no DMS (dms-instance-01)
 
-    A instância é criada na mesma região dos demais serviços, Oregon (us-west) e usando uma máquina dms.t3.micro.
+    A instância é criada na mesma região dos demais serviços, Oregon (us-west-2) e usando uma máquina dms.t3.micro (nível gratuito?).
     ![instância de replicação DMS](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bf598a55-b25e-4fc4-a981-487922842d28)
 
+  [O QUE FAZ ESSA INSTÂNCIA?]
   
   * Criar os endpoints de origem (rds-source-postgresql), que conecta o DMS com o RDS, e de destino (s3-target-datalake), que conecta o DMS com o Datalake S3
   
@@ -136,7 +137,7 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
     ![tarefa de migração parte 2](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5ba7ca5c-df11-4a1d-b0dc-bbce689581b1)
     
   Após a conclusão da tarefa de migração, os dados terão sido movidos para o bucket raw-bookclub do Datalake.
-
+[O QUE FAZ ESSA TAREFA?]
 
   ### 5ª fase - Construção do Data Warehouse 
 O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights através dos dados que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, que recebe as tabelas analíticas geradas de acordo com as regras de negócios na etapa de processamento dos dados.
@@ -145,6 +146,7 @@ Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1
   ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bb0494fb-2889-4dcf-8890-727ee2771694)
 
 O acesso ao Redshift se dá através do 
+[TERMINAR DE EXPLICAR COMO ACESSA O REDSHIFT]
 
 ### 6ª fase - Processamento dos dados
 Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que vem com as bibliotecas necessárias já instaladas o que facilita e economiza tempo, além de só cobrar pelo tempo de uso da máquina, podendo processar a quantidade de dados que desejar nesse período, sem ter aumento de custo por conta disso. 
@@ -164,14 +166,16 @@ Para executar o job spark necessita-se:
   * executar o comando spark-submit para rodar a aplicação:
     
     `spark-submit --packages io.delta:delta-core_2.12:2.0.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"  --jars /usr/share/aws/redshift/jdbc/RedshiftJDBC.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-redshift.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-avro.jar,/usr/share/aws/redshift/spark-redshift/lib/minimal-json.jar job-spark-app-emr-redshift.py`
+[TERMINAR DE EXPLICAR SOBRE ESSE CÓDIGO]
 
-Ao concluir a execução da aplicação, os dados transformados em formato delta estarão localizados no bucket processed-bookclub e as tabelas analíticas 'top10_liked_books' e 'top10_prices' geradas a partir deles, no bucket curated-bookclub e no Redshift.
+Ao concluir a execução da aplicação, os dados transformados em formato delta estarão localizados no bucket processed-bookclub e as tabelas analíticas _top10_liked_books_ e _top10_prices_ geradas a partir deles, no bucket curated-bookclub e no Redshift.
 
 
 ### 7ª fase - Consulta dos dados 
 
 ### 8ª fase - Visualização dos dados
 
+## Problemas encontrados
 
 ## Próximos passos
 Com o desejo de evoluir o projeto e torná-lo ainda mais completo, quero incluir nos próximos meses as seguintes funcionalidades:
