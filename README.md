@@ -137,7 +137,16 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
     
   Após a conclusão da tarefa de migração, os dados terão sido movidos para o bucket raw-bookclub do Datalake.
 
-### 5ª fase - Processamento dos dados
+
+  ### 5ª fase - Construção do Data Warehouse 
+O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights através dos dados que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, que recebe as tabelas analíticas geradas de acordo com as regras de negócios na etapa de processamento dos dados.
+Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1 usando um nó (servidor) do tipo dc2.large (nível gratuito), conforme mostra a figura abaixo:
+
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bb0494fb-2889-4dcf-8890-727ee2771694)
+
+O acesso ao Redshift se dá através do 
+
+### 6ª fase - Processamento dos dados
 Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que vem com as bibliotecas necessárias já instaladas o que facilita e economiza tempo, além de só cobrar pelo tempo de uso da máquina, podendo processar a quantidade de dados que desejar nesse período, sem ter aumento de custo por conta disso. 
 O processamento dos dados consiste nos seguintes passos:
   * Criar um cluster EMR contendo somente a aplicação Spark versão 3.3.0
@@ -156,12 +165,8 @@ Para executar o job spark necessita-se:
     
     `spark-submit --packages io.delta:delta-core_2.12:2.0.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"  --jars /usr/share/aws/redshift/jdbc/RedshiftJDBC.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-redshift.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-avro.jar,/usr/share/aws/redshift/spark-redshift/lib/minimal-json.jar job-spark-app-emr-redshift.py`
 
+Ao concluir a execução da aplicação, os dados transformados em formato delta estarão localizados no bucket processed-bookclub e as tabelas analíticas 'top10_liked_books' e 'top10_prices' geradas a partir deles, no bucket curated-bookclub e no Redshift.
 
-### 6ª fase - Construção do Data Warehouse 
-O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights através dos dados que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, que recebe as tabelas analíticas geradas na camada curated do S3.
-Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1 usando um nó (servidor) do tipo dc2.large (nível gratuito), conforme mostra a figura abaixo:
-
-  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bb0494fb-2889-4dcf-8890-727ee2771694)
 
 ### 7ª fase - Consulta dos dados 
 
