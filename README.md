@@ -151,8 +151,10 @@ O processamento dos dados consiste nos seguintes passos:
 Para executar o job spark necessita-se:
   * criar um par de chaves PEM no console da AWS para acessar as máquinas EC2 do cluster EMR
   * mover a aplicação criada para dentro do diretório padrão do Hadoop no cluster EMR, conforme o comando `scp -i local_das_chaves job-spark-app-emr-redshift.py hadoop@url_do_servidor:/home/hadoop/`, onde local_da_chave é a pasta onde o par de chaves PEM foi salvo e url_do_servidor é o link do DNS público do nó primário (servidor master do EMR) localizado na console da AWS a partir das informações do cluster-bookclub
-  * conectar remotamente no servidor master usando ssh
-  * executar o comando spark-submit para rodar a aplicação
+  * conectar remotamente no servidor master usando ssh: `ssh -i local_das_chaves hadoop@url_do_servidor`
+  * executar o comando spark-submit para rodar a aplicação:
+    
+    `spark-submit --packages io.delta:delta-core_2.12:2.0.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"  --jars /usr/share/aws/redshift/jdbc/RedshiftJDBC.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-redshift.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-avro.jar,/usr/share/aws/redshift/spark-redshift/lib/minimal-json.jar job-spark-app-emr-redshift.py`
 
 
 ### 6ª fase - Construção do Data Warehouse 
