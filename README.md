@@ -159,7 +159,7 @@ Para executar o job spark necessita-se:
 
 ### 6ª fase - Construção do Data Warehouse 
 O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights através dos dados que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, que recebe as tabelas analíticas geradas na camada curated do S3.
-Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1 usando um nó do tipo dc2.large (nível gratuito), conforme mostra a figura abaixo:
+Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1 usando um nó (servidor) do tipo dc2.large (nível gratuito), conforme mostra a figura abaixo:
 
   ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bb0494fb-2889-4dcf-8890-727ee2771694)
 
