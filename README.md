@@ -134,7 +134,8 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
   * Criar uma tarefa de migração (task-01) usando a instância de replicação e os endpoints gerados
   
     ![tarefa de migração parte 2](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5ba7ca5c-df11-4a1d-b0dc-bbce689581b1)
-
+    
+  Após a conclusão da tarefa de migração, os dados terão sido movidos para o bucket raw-bookclub do Datalake.
 
 ### 5ª fase - Processamento dos dados
 Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que vem com as bibliotecas necessárias já instaladas o que facilita e economiza tempo, além de só cobrar pelo tempo de uso da máquina, podendo processar a quantidade de dados que desejar nesse período, sem ter aumento de custo por conta disso. 
@@ -147,7 +148,12 @@ O processamento dos dados consiste nos seguintes passos:
   
     O job spark é uma tarefa que será executada pelo cluster EMR, no caso, a aplicação pyspark criada. A aplicação é responsável por fazer as transformações desejadas nos dados e inserí-los na camada processed (bucket processed-bookclub). Ela também gera as tabelas analíticas conforme os requisitos solicitados pela área de negócios e carrega-as tanto na camada curated (bucket curated-bookclub) do datalake como no Data Warehouse, que é o Amazon Redshift. Essa aplicação pyspark de nome [job_spark_app_emr_redshift.py](https://github.com/Priscaruso/Bookclub_project/blob/main/processing/job_spark_app_emr_redshift.py) pode ser encontrada dentro da pasta processing deste repositório.
    
-Para executar o job spark, primeiro necessita mover a aplicação criada para dentro do cluster EMR,
+Para executar o job spark necessita-se:
+  * criar um par de chaves PEM no console da AWS para acessar as máquinas EC2 do cluster EMR
+  * mover a aplicação criada para dentro do diretório padrão do Hadoop no cluster EMR, conforme o comando `scp -i local_das_chaves job-spark-app-emr-redshift.py hadoop@url_do_servidor:/home/hadoop/`, onde local_da_chave é a pasta onde o par de chaves PEM foi salvo e url_do_servidor é o link do DNS público do nó primário (servidor master do EMR) localizado na console da AWS a partir das informações do cluster-bookclub
+  * conectar remotamente no servidor master usando ssh
+  * executar o comando spark-submit para rodar a aplicação
+
 
 ### 6ª fase - Construção do Data Warehouse 
 O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights através dos dados que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, que recebe as tabelas analíticas geradas na camada curated do S3.
