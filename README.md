@@ -133,6 +133,7 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
     
   
   * Criar uma tarefa de migração (task-01) usando a instância de replicação e os endpoints gerados
+
   A tarefa é responsável por fazer o gerenciamento entre os endpoints (o banco de dados de origem e o de destino) e é executada pela instância de replicação.
     ![tarefa de migração parte 2](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5ba7ca5c-df11-4a1d-b0dc-bbce689581b1)
     
@@ -152,6 +153,8 @@ O acesso ao Redshift se dá através do
 Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que pode vir instalado com diversas aplicações open source do ecossistema Hadoop e tem as bibliotecas necessárias (como as para o formato Delta) e os JARS necessários para trabalhar com Redshift já instalados, o que facilita e economiza tempo. Além disso, ele só cobra pelo tempo de uso da máquina, podendo processar a quantidade de dados que desejar nesse período, sem ter aumento de custo por conta disso. 
 O processamento dos dados consiste nos seguintes passos:
   * Criar um cluster EMR contendo somente a aplicação Spark versão 3.3.0
+    
+    Foi usado o EMR versão 6.9.0 que já vem com as bibliotecas Delta e máquinas EC2 do tipo m4.large, que tem menor custo e menor recurso computacional, mas atende ao objetivo do projeto.
   
     ![cluster EMR - versão editada](https://github.com/Priscaruso/Bookclub_project/assets/83982164/89a21f7b-3fcf-4ef6-99a4-f2888e5f1515)
 
