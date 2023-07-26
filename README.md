@@ -154,7 +154,7 @@ Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o proc
 O processamento dos dados consiste nos seguintes passos:
   * Criar um cluster EMR contendo somente a aplicação Spark versão 3.3.0
     
-    Foi usado o EMR versão 6.9.0 que já vem com as bibliotecas Delta e máquinas EC2 do tipo m4.large, que tem menor custo e menor recurso computacional, mas atende ao objetivo do projeto.
+    Foi usado o EMR versão 6.9.0 que já vem com as bibliotecas Delta e máquinas EC2 do tipo m4.large, que tem menor custo e menor recurso computacional, mas atende ao objetivo do projeto. Durante a criação do cluster, é necessário também gerar um par de chaves SSH no formato PEM para acessar as máquinas EC2 do cluster EMR.
   
     ![cluster EMR - versão editada](https://github.com/Priscaruso/Bookclub_project/assets/83982164/89a21f7b-3fcf-4ef6-99a4-f2888e5f1515)
 
@@ -164,7 +164,7 @@ O processamento dos dados consiste nos seguintes passos:
    
 Para executar o job spark necessita-se:
   * criar um par de chaves PEM no console da AWS para acessar as máquinas EC2 do cluster EMR
-  * mover a aplicação criada para dentro do diretório padrão do Hadoop no cluster EMR, conforme o comando `scp -i local_das_chaves job-spark-app-emr-redshift.py hadoop@url_do_servidor:/home/hadoop/`, onde local_da_chave é a pasta onde o par de chaves PEM foi salvo e url_do_servidor é o link do DNS público do nó primário (servidor master do EMR) localizado na console da AWS a partir das informações do cluster-bookclub
+  * mover a aplicação criada para dentro do diretório padrão do Hadoop no cluster EMR, conforme o comando `scp -i local_das_chaves job-spark-app-emr-redshift.py hadoop@url_do_servidor:/home/hadoop/`, onde local_da_chave é a pasta onde o par de chaves SSH foi salvo e url_do_servidor é o link do DNS público do nó primário (servidor master do EMR) localizado na console da AWS a partir das informações do cluster-bookclub
   * conectar remotamente no servidor master usando ssh: `ssh -i local_das_chaves hadoop@url_do_servidor`
   * executar o comando spark-submit para rodar a aplicação:
     
