@@ -163,7 +163,7 @@ O processamento dos dados consiste nos seguintes passos:
     O job spark é uma tarefa que será executada pelo cluster EMR, no caso, a aplicação pyspark criada. A aplicação é responsável por fazer as transformações desejadas nos dados e inserí-los na camada processed (bucket processed-bookclub). Ela também gera as tabelas analíticas conforme os requisitos solicitados pela área de negócios e carrega-as tanto na camada curated (bucket curated-bookclub) do datalake como no Data Warehouse, que é o Amazon Redshift. Essa aplicação pyspark de nome [job_spark_app_emr_redshift.py](https://github.com/Priscaruso/Bookclub_project/blob/main/processing/job_spark_app_emr_redshift.py) pode ser encontrada dentro da pasta processing deste repositório.
    
 Para executar o job spark necessita-se:
-  * habilitar a permissão de execução para o proprietário do arquivo do par de chaves SSH: `chmod 400 local_das_chaves`, onde local_da_chave é a pasta onde o par de chaves SSH foi salvo
+  * habilitar a permissão de execução para o proprietário do arquivo do par de chaves SSH: `chmod 400 local_das_chaves`, onde local_das_chaves é a pasta onde o par de chaves SSH foi salvo
   * mover a aplicação criada para dentro do diretório padrão do Hadoop no cluster EMR, conforme o comando `scp -i local_das_chaves job-spark-app-emr-redshift.py hadoop@url_do_servidor:/home/hadoop/`, onde url_do_servidor é o link do DNS público do nó primário (servidor master do EMR) localizado na console da AWS a partir das informações do cluster-bookclub
   * conectar remotamente no servidor master usando ssh: `ssh -i local_das_chaves hadoop@url_do_servidor`
   * executar o comando spark-submit para rodar a aplicação:
