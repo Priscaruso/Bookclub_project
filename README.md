@@ -141,13 +141,16 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
 [O QUE FAZ ESSA TAREFA?]
 
   ### 5ª fase - Construção do Data Warehouse 
-O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights através dos dados que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, que recebe as tabelas analíticas geradas de acordo com as regras de negócios na etapa de processamento dos dados.
-Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1 usando um nó (servidor) do tipo dc2.large (nível gratuito), conforme mostra a figura abaixo:
+O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights por meio de consultas SQL e também servir os dados para as ferramentas analíticas de visualização gerarem dashboards, que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, uma das soluções mais usadas no mercado, que armazena as tabelas analíticas geradas de acordo com as regras de negócios na etapa de processamento dos dados. O Redshift possui um cluster com vários nós (máquinas), o que permite escalar a performance das consultas, além de possuir diversos outros recursos para escabilidade e alta performance.
+Para construir o Data Warehouse, precisa-se criar um cluster, conforme os passos abaixo:
+  * definir o nome do cluster, no caso redshift-cluster-1
+  * selecionar um nó (servidor) do tipo dc2.large (nível gratuito/free-tier)
+  * definir um usuário e uma senha para acesso ao banco de dados que será criado dentro do cluster
+A figura abaixo mostra o cluster gerado:
 
   ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bb0494fb-2889-4dcf-8890-727ee2771694)
 
-O acesso ao Redshift se dá através do 
-[TERMINAR DE EXPLICAR COMO ACESSA O REDSHIFT]
+O acesso ao Redshift se dá através do editor de consultas v2 (query editor v2) no qual pode-se realizar consultas SQL nas tabelas analíticas geradas através da aplicação pyspark no processamento dos dados.
 
 
 ### 6ª fase - Processamento dos dados
