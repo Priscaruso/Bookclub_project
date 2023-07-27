@@ -149,6 +149,7 @@ Para construir o Data Warehouse, é criado um cluster de nome redshift-cluster-1
 O acesso ao Redshift se dá através do 
 [TERMINAR DE EXPLICAR COMO ACESSA O REDSHIFT]
 
+
 ### 6ª fase - Processamento dos dados
 Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o processamento dos dados, usando uma aplicação Spark, que possibilita o processamento de grande volume de dados de forma mais eficiente. A opção por usar o EMR, é que ele é um cluster (uma máquina EC2), que pode vir instalado com diversas aplicações open source do ecossistema Hadoop e tem as bibliotecas necessárias (como as para o formato Delta) e os JARS necessários para trabalhar com Redshift já instalados, o que facilita e economiza tempo. Além disso, ele só cobra pelo tempo de uso da máquina, podendo processar a quantidade de dados que desejar nesse período, sem ter aumento de custo por conta disso. 
 O processamento dos dados consiste nos seguintes passos:
@@ -176,6 +177,7 @@ Ao concluir a execução da aplicação, os dados transformados em formato delta
 
 ### 7ª fase - Consulta dos dados 
 Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo com as regras de negócios definidas, por meio do Amazon Athena. O Athena é um serviço self-service, onde os analistas de negócios podem rapidamente realizar consultas para obter os insights desejados a partir dos dados tratados que estão armazenados no S3 na camada curated do Datalake, no caso desse projeto são os que se encontram no bucket curated-bookclub. Para acessar esses dados no Athena, primeiramente, devem ser realizados os seguintes passos:
+
   * 
   *
 
