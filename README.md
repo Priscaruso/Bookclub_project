@@ -154,7 +154,7 @@ Nesta etapa foi utilizado o EMR (Elastic Map Reduce) da AWS para realizar o proc
 O processamento dos dados consiste nos seguintes passos:
   * Criar um cluster EMR contendo somente a aplicação Spark versão 3.3.0
     
-    Foi usado o EMR versão 6.9.0 que já vem com as bibliotecas Delta e máquinas EC2 do tipo m4.large, que tem menor custo e menor recurso computacional, mas atende ao objetivo do projeto. Durante a criação do cluster, é necessário também gerar um par de chaves SSH no formato PEM para acessar as máquinas EC2 do cluster EMR.
+    Foi usado o EMR versão 6.9.0 que já vem com as bibliotecas Delta e máquinas EC2 do tipo m4.large, que tem menor custo e menor recurso computacional, mas atende ao objetivo do projeto. Durante a criação do cluster, é necessário gerar um par de chaves SSH no formato PEM para acessar as máquinas EC2 do cluster EMR. Além disso, também é necessário criar as roles de acesso a serviços da AWS (EMR_DefaultRole_V2), que permitem o acesso do EMR ao S3 para armazenar os dados processados, e de acesso a instâncias EC2 (EMR_EC2_DefaultRole), para provisionar as máquinas do cluster.
   
     ![cluster EMR - versão editada](https://github.com/Priscaruso/Bookclub_project/assets/83982164/89a21f7b-3fcf-4ef6-99a4-f2888e5f1515)
 
@@ -163,14 +163,14 @@ O processamento dos dados consiste nos seguintes passos:
     O job spark é uma tarefa que será executada pelo cluster EMR, no caso, a aplicação pyspark criada. A aplicação é responsável por fazer as transformações desejadas nos dados e inserí-los na camada processed (bucket processed-bookclub). Ela também gera as tabelas analíticas conforme os requisitos solicitados pela área de negócios e carrega-as tanto na camada curated (bucket curated-bookclub) do datalake como no Data Warehouse, que é o Amazon Redshift. Essa aplicação pyspark de nome [job_spark_app_emr_redshift.py](https://github.com/Priscaruso/Bookclub_project/blob/main/processing/job_spark_app_emr_redshift.py) pode ser encontrada dentro da pasta processing deste repositório.
    
 Para executar o job spark necessita-se:
-  * criar um par de chaves PEM no console da AWS para acessar as máquinas EC2 do cluster EMR
-  * mover a aplicação criada para dentro do diretório padrão do Hadoop no cluster EMR, conforme o comando `scp -i local_das_chaves job-spark-app-emr-redshift.py hadoop@url_do_servidor:/home/hadoop/`, onde local_da_chave é a pasta onde o par de chaves SSH foi salvo e url_do_servidor é o link do DNS público do nó primário (servidor master do EMR) localizado na console da AWS a partir das informações do cluster-bookclub
+  * habilitar a permissão de execução para o proprietário do arquivo do par de chaves SSH: `chmod 400 local_das_chaves`, onde local_da_chave é a pasta onde o par de chaves SSH foi salvo
+  * mover a aplicação criada para dentro do diretório padrão do Hadoop no cluster EMR, conforme o comando `scp -i local_das_chaves job-spark-app-emr-redshift.py hadoop@url_do_servidor:/home/hadoop/`, onde url_do_servidor é o link do DNS público do nó primário (servidor master do EMR) localizado na console da AWS a partir das informações do cluster-bookclub
   * conectar remotamente no servidor master usando ssh: `ssh -i local_das_chaves hadoop@url_do_servidor`
   * executar o comando spark-submit para rodar a aplicação:
     
     `spark-submit --packages io.delta:delta-core_2.12:2.0.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"  --jars /usr/share/aws/redshift/jdbc/RedshiftJDBC.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-redshift.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-avro.jar,/usr/share/aws/redshift/spark-redshift/lib/minimal-json.jar job-spark-app-emr-redshift.py`
-[TERMINAR DE EXPLICAR SOBRE ESSE CÓDIGO]
-
+    
+O comando acima faz a configuração das bibliotecas Delta, para gerar os dados nesse formato, e JARS, para o EMR conseguir trabalhar junto com o Redshift, executando logo em seguida, a aplicação.
 Ao concluir a execução da aplicação, os dados transformados em formato delta estarão localizados no bucket processed-bookclub e as tabelas analíticas _top10_liked_books_ e _top10_prices_ geradas a partir deles, no bucket curated-bookclub e no Redshift.
 
 
