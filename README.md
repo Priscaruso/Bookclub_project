@@ -179,10 +179,13 @@ Ao concluir a execução da aplicação, os dados transformados em formato delta
 
 
 ### 7ª fase - Consulta dos dados 
-Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo com as regras de negócios definidas, por meio do Amazon Athena. O Athena é um serviço de consultas ad-hoc simples, onde os analistas de negócios podem rapidamente realizar consultas interativas de forma simples para obter os insights desejados a partir dos dados tratados que estão armazenados no S3, no caso desse projeto são os que se encontram na camada curated do Datalake, o bucket curated-bookclub. O custo dele é por consulta, assim o ideal é tentar definir um limite para obter os insights desejados utilizando o menor número de consultas possível. Para acessar esses dados no Athena, primeiramente, devem ser realizados os seguintes passos:
+Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo com as regras de negócios definidas, por meio do Amazon Athena. O Athena é um serviço serverless (sem necessidade de provisionar servidor) de consultas ad-hoc simples, onde os analistas de negócios podem rapidamente realizar consultas interativas de forma simples para obter os insights desejados a partir dos dados tratados que estão armazenados no S3, no caso desse projeto são os que se encontram na camada curated do Datalake, o bucket curated-bookclub. O custo dele é por consulta, por quantidade de terabyte escaneado, assim o ideal é tentar definir um limite usando workgroups (grupos de trabalho) para obter os insights desejados utilizando o menor número de consultas possível. Para acessar esses dados no Athena, primeiramente, devem ser realizados os seguintes passos:
 
-  * 
-  *
+  * Criar um crawler no Glue
+    O crawler vai escanear e inferir automaticamente o schema dos dados transformados armazenados no bucket curated-bookclub do S3.
+    
+  * criar uma database no Glue Data Catalog
+    A database é como se fosse um banco de dados, mas de fato não é, 
 
 ### 8ª fase - Visualização dos dados
 
