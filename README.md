@@ -179,7 +179,7 @@ Ao concluir a execução da aplicação, os dados transformados em formato delta
 
 
 ### 7ª fase - Consulta dos dados 
-Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo com as regras de negócios definidas, por meio do Amazon Athena. O Athena é um serviço self-service, onde os analistas de negócios podem rapidamente realizar consultas para obter os insights desejados a partir dos dados tratados que estão armazenados no S3 na camada curated do Datalake, no caso desse projeto são os que se encontram no bucket curated-bookclub. Para acessar esses dados no Athena, primeiramente, devem ser realizados os seguintes passos:
+Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo com as regras de negócios definidas, por meio do Amazon Athena. O Athena é um serviço de consultas ad-hoc simples, onde os analistas de negócios podem rapidamente realizar consultas interativas de forma simples para obter os insights desejados a partir dos dados tratados que estão armazenados no S3, no caso desse projeto são os que se encontram na camada curated do Datalake, o bucket curated-bookclub. O custo dele é por consulta, assim o ideal é tentar definir um limite para obter os insights desejados utilizando o menor número de consultas possível. Para acessar esses dados no Athena, primeiramente, devem ser realizados os seguintes passos:
 
   * 
   *
