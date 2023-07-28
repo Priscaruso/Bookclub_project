@@ -116,14 +116,13 @@ São criadas três camadas para armazenar os dados:
 ### 4ª fase - Migração dos dados
 Para que as transformações e análises dos dados possam ser realizadas, os dados necessitam estar armazenados em um local apropriado
 para isso e que tenha condições de receber constantemente novos dados, ou seja, seja escalável. Assim, o DataLake é o local ideal
-para realizar o armazenamento desses dados. Para que isso seja possível, é preciso realizar a migração dos dados brutos contidos no RDS para a camada raw do DataLake (bucket raw-bookclub). Nesse projeto é usado o Database Migration Service da AWS, que apesar de ter um custo mais elevado quando se tem um grande volume de dados, é fácil de usar e realiza a migração de forma mais rápida. A migração é feita de acordo com os seguintes passos:
-  * Criar uma instância de replicação no DMS (dms-instance-01)
+para realizar o armazenamento desses dados. Para que isso seja possível, é preciso realizar a migração dos dados brutos contidos no RDS para a camada raw do DataLake (bucket raw-bookclub). Nesse projeto é usado o Database Migration Service (DMS) da AWS, que apesar de ter um custo mais elevado quando se tem um grande volume de dados, é fácil de usar e realiza a migração de forma mais rápida[?]. A migração é feita de acordo com os seguintes passos:
+  * Criar uma instância de replicação no DMS
 
-    A instância é criada na mesma região dos demais serviços, Oregon (us-west-2) e usando uma máquina dms.t3.micro (nível gratuito?).
+    A instância é criada com o nome _dms-instance-01_ na mesma região dos demais serviços, Oregon (us-west-2), com uma engine na versão 3.4.6, uma máquina dms.t3.micro, que tem uma memória menor, e no ambiente de dev/teste. O ideal é selecionar uma mémoria que corresponda, no mínimo, ao tamanho de memória do banco de dados de origem para que não haja problemas de memória. Em relação ao espaço de armazenamento, deve ter no mínimo metade do tamanho do banco de dados de origem. Essa instância é responsável pelo gerenciamento da tarefa de migração.
+    
     ![instância de replicação DMS](https://github.com/Priscaruso/Bookclub_project/assets/83982164/bf598a55-b25e-4fc4-a981-487922842d28)
 
-  [O QUE FAZ ESSA INSTÂNCIA?]
-  
   * Criar os endpoints de origem (rds-source-postgresql), que conecta o DMS com o RDS, e de destino (s3-target-datalake), que conecta o DMS com o Datalake S3
   
     ![endpoints](https://github.com/Priscaruso/Bookclub_project/assets/83982164/aa964165-ecc1-4d90-bdf7-94e1937d49b3)
@@ -133,12 +132,13 @@ para realizar o armazenamento desses dados. Para que isso seja possível, é pre
     
   
   * Criar uma tarefa de migração (task-01) usando a instância de replicação e os endpoints gerados
-
-  A tarefa é responsável por fazer o gerenciamento entre os endpoints (o banco de dados de origem e o de destino) e é executada pela instância de replicação.
-    ![tarefa de migração parte 2](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5ba7ca5c-df11-4a1d-b0dc-bbce689581b1)
+  
+    A tarefa é responsável por fazer a conexão entre os endpoints, ou seja, o banco de dados de origem e de destino, e é executada pela instância de replicação.
+  
+  ![tarefa de migração parte 2](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5ba7ca5c-df11-4a1d-b0dc-bbce689581b1)
     
   Após a conclusão da tarefa de migração, os dados terão sido movidos para o bucket raw-bookclub do Datalake.
-[O QUE FAZ ESSA TAREFA?]
+
 
   ### 5ª fase - Construção do Data Warehouse 
 O Data Warehouse é o armazém de dados analíticos, onde os analistas de negócios conseguem obter insights por meio de consultas SQL e também servir os dados para as ferramentas analíticas de visualização gerarem dashboards, que permitem a eles tomar melhores decisões. O Data Warehouse utilizado nesse projeto é o Amazon Redshift, uma das soluções mais usadas no mercado, que armazena as tabelas analíticas geradas de acordo com as regras de negócios na etapa de processamento dos dados. O Redshift possui um cluster com vários nós (máquinas), o que permite escalar a performance das consultas, além de possuir diversos outros recursos para escabilidade e alta performance.
