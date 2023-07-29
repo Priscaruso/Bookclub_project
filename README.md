@@ -182,10 +182,15 @@ Ao concluir a execução da aplicação, os dados transformados em formato delta
 Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo com as regras de negócios definidas, por meio do Amazon Athena. O Athena é um serviço serverless (sem necessidade de provisionar servidor) de consultas ad-hoc simples, onde os analistas de negócios podem rapidamente realizar consultas interativas de forma simples para obter os insights desejados a partir dos dados tratados que estão armazenados no S3, no caso desse projeto são os que se encontram na camada curated do Datalake, o bucket curated-bookclub. O custo dele é por consulta, por quantidade de terabyte escaneado, assim o ideal é tentar definir um limite usando workgroups (grupos de trabalho) para obter os insights desejados utilizando o menor número de consultas possível. Para acessar esses dados no Athena, primeiramente, devem ser realizados os seguintes passos:
 
   * Criar um crawler no Glue
-    O crawler vai escanear e inferir automaticamente o schema dos dados transformados armazenados no bucket curated-bookclub do S3.
     
-  * criar uma database no Glue Data Catalog
-    A database é como se fosse um banco de dados, mas de fato não é, 
+    O Glue é um serviço onde pode-se realizar integrações de dados, ou seja, transportar os dados de um lugar para o outro, realizar transformações nos dados e catalogá-los. Para que os dados do S3 possam ser acessados através do Amazon Athena, é necessário usar o Glue para fazer a integração entre esses dois serviços. O primeiro passo para isso é através do Glue crawler. O crawler vai escanear e inferir automaticamente o schema dos dados transformados armazenados no bucket processed-bookclub do S3. Ao criar o crawler, configura-se a fonte dos dados, Delta Lake no caso, o caminho onde está a tabela books no bucket processed-bookclub do S3, opção criar tabelas nativas para permitir a leitura do formato Delta direto no Athena, um classificador personalizado (algoritmo), que detecta o formato dos dados desejados que será populado no Glue Data Catalog, criar um IAM role para o Glue crawler acessar os dados no S3,
+    
+  * Criar uma database no Glue Data Catalog
+    A database é como se fosse um banco de dados, mas funciona de forma diferente, e é onde são catalogadas as tabelas (metadados), cujos schemas foram inferidos pelo crawler.
+
+  * 
+    
+
 
 ### 8ª fase - Visualização dos dados
 
