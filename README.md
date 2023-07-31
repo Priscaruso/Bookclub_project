@@ -215,6 +215,9 @@ Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo
 
 
 ### 8ª fase - Visualização dos dados
+A última etapa do projeto consiste em consumir os dados armazenados no Data Warehouse, o Redshift, por meio de ferramentas de BI para que os analistas de negócios possam tomar melhores decisões por meio da visualização dos dados. Foram usadas duas ferramentas diferentes, o Power BI e o Amazon Quicksight, própria da AWS.
+
+
 
 ## Problemas encontrados
 
