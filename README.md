@@ -195,12 +195,23 @@ Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo
     
      ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/b28ffe8a-7765-4064-bf35-8291aa1e0428)
 
-    Após o término da execução do _crawler-processed-bookclub é gerada a tabela _books_ na database _books-processed_ e o _crawler-curated-bookclub_ gera as tabelas _top10_liked_books_ e _top10_prices_ na database _books-curated_.
+    Após o término da execução do _crawler-processed-bookclub é gerada a tabela _books_ na database _books-processed_ e o _crawler-curated-bookclub_ gera as tabelas _top10_liked_books_ e _top10_prices_ na database _books-processed_.
 
     ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/09791d10-2f5a-4dda-96f9-976950cb3751)
 
-  * 
-    
+  Para acessar os dados no Athena, basta ir na opção _query editor_, selecionar o data source(fonte dos dados) como AWSDataCatalog e a Database desejada, _books-processed_ ou _books-processed_. No menu tables, é possível visualizar as tabelas de cada database. Assim, já consegue-se consultar os dados de cada tabela usando SQL. 
+  A figura abaixo mostra o resultado da consulta quando se seleciona todas as colunas da tabela _books_:
+  
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/fee36a24-fcc0-4589-b22c-5e131740935f)
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/4f4b08b7-8ead-47ce-9f74-0bf1291a6bdc)
+
+  Os resultados das consultas ao selecionar todas as colunas das tabelas _top10_liked_books_ e _top10_prices_, respectivamente, também podem ser visualizados a seguir:
+
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5a6ad7bf-b613-4161-9664-4f6ed7761ec0)
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/41d6ada8-d8a6-407c-af7d-3f7bb3f677e0)
+  
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/f60b5d33-95e0-4f1b-86f2-c4337a76730b)
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/30cc304f-5c98-4262-9376-9833299f6fcd)
 
 
 ### 8ª fase - Visualização dos dados
