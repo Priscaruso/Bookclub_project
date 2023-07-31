@@ -181,12 +181,23 @@ Ao concluir a execução da aplicação, os dados transformados em formato delta
 ### 7ª fase - Consulta dos dados 
 Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo com as regras de negócios definidas, por meio do Amazon Athena. O Athena é um serviço serverless (sem necessidade de provisionar servidor) de consultas ad-hoc simples, onde os analistas de negócios podem rapidamente realizar consultas interativas de forma simples para obter os insights desejados a partir dos dados tratados que estão armazenados no S3, no caso desse projeto são os que se encontram na camada curated do Datalake, o bucket curated-bookclub. O custo dele é por consulta, por quantidade de terabyte escaneado, assim o ideal é tentar definir um limite usando workgroups (grupos de trabalho) para obter os insights desejados utilizando o menor número de consultas possível. Para acessar esses dados no Athena, primeiramente, devem ser realizados os seguintes passos:
 
+ * Criar as databases no Glue Data Catalog
+    A database é como se fosse um banco de dados, mas funciona de forma diferente, e é onde são catalogadas as tabelas (metadados), cujos schemas foram inferidos pelo crawler.
+   Para criá-la acessa a opção _Databases_ e, em seguida, _adicionar nova database_. Na configuração, define um nome para a database e seleciona o botão _criar database_. Foram criadas duas databases nesse projeto, a  _books-processed_ e a _books-curated_, conforme mostra a figura abaixo:
+
+    ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/1a5e21ae-b771-4eff-bd06-fa0515a66862)
+   
+    ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/69206d44-f4fc-4997-9ba8-cc62dc4cb1cc)
+
   * Criar os crawlers no Glue
     
-    O Glue é um serviço onde pode-se realizar integrações de dados, ou seja, transportar os dados de um lugar para o outro, realizar transformações nos dados e catalogá-los. Para que os dados do S3 possam ser acessados através do Amazon Athena, é necessário usar o Glue para fazer a integração entre esses dois serviços. O primeiro passo para isso é através do Glue crawler. O crawler vai escanear e inferir automaticamente o schema dos dados transformados armazenados no bucket processed-bookclub e curated-bookclub do S3. Ao criar o crawler, configura-se a fonte dos dados, Delta Lake no caso, o caminho onde está as tabelas do bucket processed-bookclub e do curated-bookclub do S3, habilita a opção criar tabelas nativas para permitir a leitura do formato Delta direto no Athena, um classificador personalizado (algoritmo), que detecta o formato dos dados desejados que será populado no Glue Data Catalog, criar um IAM role para o Glue crawler acessar os dados no S3, 
+    O Glue é um serviço onde pode-se realizar integrações de dados, ou seja, transportar os dados de um lugar para o outro, realizar transformações nos dados e catalogá-los. Para que os dados do S3 possam ser acessados através do Amazon Athena, é necessário usar o Glue para fazer a integração entre esses dois serviços. O primeiro passo para isso é através do Glue crawler. O crawler vai escanear e inferir automaticamente o schema dos dados transformados armazenados no bucket processed-bookclub e curated-bookclub do S3. Ao criar o crawler, configura-se a fonte dos dados, Delta Lake no caso; o caminho onde está as tabelas do bucket processed-bookclub e do curated-bookclub do S3; habilita a opção criar tabelas nativas para permitir a leitura do formato Delta direto no Athena; um classificador personalizado (algoritmo), que detecta o formato dos dados desejados que será populado no Glue Data Catalog; cria-se um IAM role para o Glue crawler acessar os dados no S3; seleciona a database que vai receber os dados; define que o Glue vai atualizar a definição das tabelas no Data Catalog caso haja alguma alteração no schema dos dados no S3; define uma tabela como depreciada no Data Catalog, caso algum objeto seja deletado na fonte S3; especifica a frequência que o crawler vai ser executado, que no caso é on-demand, sendo executado só quando for desejado. Após o término da sua criação, o crawler é executado clicando no botão _run crawler_. São criados dois crawler nesse projeto, o _crawler-processed-bookclub_ e o _crawler-curated-bookclub_, conforme mostra a figura:
     
-  * Criar as databases no Glue Data Catalog
-    A database é como se fosse um banco de dados, mas funciona de forma diferente, e é onde são catalogadas as tabelas (metadados), cujos schemas foram inferidos pelo crawler.
+     ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/b28ffe8a-7765-4064-bf35-8291aa1e0428)
+
+    Após o término da execução do _crawler-processed-bookclub é gerada a tabela _books_ na database _books-processed_ e o _crawler-curated-bookclub_ gera as tabelas _top10_liked_books_ e _top10_prices_ na database _books-curated_.
+
+    ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/09791d10-2f5a-4dda-96f9-976950cb3751)
 
   * 
     
