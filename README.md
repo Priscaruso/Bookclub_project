@@ -215,7 +215,14 @@ Essa etapa consiste no acesso aos dados analíticos já transformados, de acordo
 
 
 ### 8ª fase - Visualização dos dados
-A última etapa do projeto consiste em consumir os dados armazenados no Data Warehouse, o Redshift, por meio de ferramentas de BI para que os analistas de negócios possam tomar melhores decisões por meio da visualização dos dados. Foram usadas duas ferramentas diferentes, o Power BI e o Amazon Quicksight, própria da AWS.
+A última etapa do projeto consiste em consumir os dados armazenados no Data Warehouse, o Redshift, por meio de ferramentas de BI para que os analistas de negócios possam tomar melhores decisões por meio da visualização dos dados. Foram usadas duas ferramentas diferentes, o Power BI e o Amazon Quicksight. A escolha por usar essas duas ferramentas é porque o Power BI é a ferramenta de BI mais utilizada no mercado e o Quicksight é fácil de usar, tem um custo mais baixo do que as ferramentas tradicionais como Power BI, além de ser própria da AWS, que foi a nuvem usada durante todo o projeto. 
+Para acessar os dados do Redshift por meio do Power BI, é preciso configurar as regras de entrada da VPC onde está o Redshift no console da AWS, para permitir que a conexão do Quicksight chegue até o Redshift. Depois deve-se selecionar a opção "Obter dados" e procurar por "Amazon Redshift". Na tela que se abre, configurar a fonte dos dados colocando o link do endpoint do Redshift e o nome do banco de dados onde as tabelas desejadas se encontram, que é o "dev". Após o estabelecimento da conexão, basta selecionar as tabelas _top10_liked_books_ e _top10_prices_ na nova tela conforme mostrado abaixo:
+
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/a3f9daf5-f8dd-4ae5-acfe-29b8eabdc7ae)
+
+  Com isso, os analistas de negócios já conseguem criar os dashboards e as visualizações de dados desejadas.
+
+  Para acessar os dados a partir do Amazon Quicksight, deve-se criar uma conta nesse serviço usando o usuário da AWS. Esse serviço é pago, mas pode testá-lo gratuitamente por 30 dias. Após a criação da conta, assim como foi feito com o Power BI, deve-se configurar as regras de entrada da VPC para permitir que a conexão do Quicksight chegue até o Redshift.
 
 
 
