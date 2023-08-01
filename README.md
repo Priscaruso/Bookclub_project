@@ -222,7 +222,24 @@ Para acessar os dados do Redshift por meio do Power BI, é preciso configurar as
 
   Com isso, os analistas de negócios já conseguem criar os dashboards e as visualizações de dados desejadas.
 
-  Para acessar os dados a partir do Amazon Quicksight, deve-se criar uma conta nesse serviço usando o usuário da AWS. Esse serviço é pago, mas pode testá-lo gratuitamente por 30 dias. Após a criação da conta, assim como foi feito com o Power BI, deve-se configurar a conexão para acesso do Quicksight ao Redshift. Essa configuração é feita através do Amazon VPC Management Console, por meio do Security Groups (Grupo de Segurança) no painel de navegação. Um novo Security Group deve ser criado, e nos campos _Tag de Nome_, _Grupo de Nome_ e _Descrição_, inserido o nome _Amazon-QuickSight-access_. No campo VPC, colocar o ID da VPC do cluster Redshift que será acessado pelo Quicksight e finalizar a criação do Security Group. Em regras de entradas do grupo de segurança, criar uma nova usando a porta TCP do tipo TCP personalizada e número de porta igual ao usado para a porta do banco do cluster Redshift. No campo fonte (source), inserir o bloco de endereço CIDR para Região da AWS onde foi criado a conta do AmazonQuickSight, que nesse caso foi São Paulo, porque essa era a única região no momento que tava disponível para testar grauitamente a ferramenta. Salvar a regra de entrada e navegar até o menu dos clusters do Amazon Redshift Management Console. Exibir as informações do cluster redshift-cluster-1 e clicar em modificar. No menu VPC Security Group, escolher o _Amazon-QuickSight-access_ e selecionar modificar. Terminadas as configurações, o próximo passo é acessar o Quicksight através do console da AWS usando a conta criada. 
+  Para acessar os dados a partir do Amazon Quicksight, deve-se criar uma conta nesse serviço usando o usuário da AWS. Esse serviço é pago, mas pode testá-lo gratuitamente por 30 dias. Após a criação da conta, assim como foi feito com o Power BI, deve-se configurar a conexão para acesso do Quicksight ao Redshift. Essa configuração é feita através do Amazon VPC Management Console, por meio do Security Groups (Grupo de Segurança) no painel de navegação conforme os passos abaixo:
+  * Um novo Security Group deve ser criado, e nos campos _Tag de Nome_, _Grupo de Nome_ e _Descrição_, inserido o nome _Amazon-QuickSight-access_
+  * No campo VPC, colocar o ID da VPC do cluster Redshift que será acessado pelo Quicksight e finalizar a criação do Security Group
+  * Em regras de entradas do grupo de segurança, criar uma nova para o Redshift usando a porta TCP do tipo TCP personalizada e número de porta igual ao usado para a porta do banco do cluster Redshift
+  *  No campo fonte (source), inserir o bloco de endereço CIDR para Região da AWS onde foi criado a conta do AmazonQuickSight, que nesse caso foi São Paulo, porque essa era a única região no momento que tava disponível para testar grauitamente a ferramenta
+  *  Salvar a regra de entrada e navegar até o menu dos clusters do Amazon Redshift Management Console
+  *  Exibir as informações do cluster redshift-cluster-1, ir até as configurações de _Rede e de Segurança_, clicar em editar e na opção VPC Security Group, escolher o _Amazon-QuickSight-access_ e salvar as modificações
+  *  Ainda no Amazon Redshift Management Console, ir até as configurações de _Rede e de Segurança_ e habilitar o acesso público do cluster
+    
+ Terminadas as configurações, o próximo passo é acessar o Quicksight através do console da AWS usando a conta criada. Se o Amazon Redshift não estiver configurado como um serviço que o Quicksight pode acessar, ir no menu Segurança e Permissões, e adicioná-lo. Em seguida, ir no menu Dataset e selecionar o Redshift como fonte dos dados. Configurar a nova fonte definindo um nome para ela (_top10_liked_books_ e depois _top10_prices_), uma instância de ID (redshift-cluster-1), o tipo de conexão (Rede pública), o nome do banco de dados (dev), nome de usuário e senha do banco. Após configurar tudo, selecionar conectar para estabelecer a conexão. Em seguida, selecionar o schema e as tabelas desejadas, e o modo de consulta como SPICE, no qual os dados serão armazenados dentro do Quicksight, podendo ser consultados a qualquer momento. Foram criados dois datasets para esse projeto, o _top10_liked_books_ e o _top10_prices_ referentes às tabelas de mesmo nome. As visualizações geradas a partir desses datasets encontram-se a seguir:
+
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/04decfd2-d41c-4958-92c2-745362a39e3c)
+  
+  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5df45f7b-3f9c-4205-95e9-ecf7df74c7a3)
+
+
+
+
 
 
 
