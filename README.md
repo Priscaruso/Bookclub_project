@@ -238,9 +238,11 @@ Para acessar os dados do Redshift por meio do Power BI, é preciso configurar as
   ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5df45f7b-3f9c-4205-95e9-ecf7df74c7a3)
 
 
+A primeira visualização consiste em uma tabela contendo os 10 livros mais curtidos na plataforma pelos usuários e suas respectivas categorias, ou seja, são os livros que tem o maior número de estrelas de acordo com a ordem alfabética. Assim, o fato do livro _#HigherSele: Wake Up Your Life. Free Your Soul. Find Your Tribe._ estar na primeira classificação, não significa que ele tem o maior número de estrelas entre os 10, pois todos esses livros tem 5 estrelas, e sim que é o mais curtido segundo a ordem alfabética.
 
+A segunda visualização mostra os 10 livros mais baratos. O livro _An Abundance of Katherines_ é o que tem o menor preço entre os 1000 livros presentes na plataforma.
 
-
+Essas são apenas algumas das análises possíveis de serem construídas com as ferramentas de BI. A partir delas, os analistas de negócios já conseguem criar dashboards e diversas outras visualizações de dados, conforme desejado.
 
 
 ## Problemas encontrados
