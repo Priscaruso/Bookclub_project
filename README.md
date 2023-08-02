@@ -18,6 +18,8 @@ trocas e vendas no site. No entanto, a empresa não coleta e nem armazena os liv
 
 :small_blue_diamond: [Fases do Projeto](#fases-do-projeto)
 
+:small_blue_diamond: [Dificuldades encontradas durante o projeto](#dificuldades-encontradas-durante-o-projeto)
+
 :small_blue_diamond: [Próximos passos](#próximos-passos)
 
 
