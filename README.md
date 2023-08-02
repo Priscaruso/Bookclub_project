@@ -255,11 +255,13 @@ Os problemas foram:
 * Erro de formato não suportado nas strings ao tentar inserir os dados no banco RDS, pois algumas continham % e o python não reconhece isso
 * Falha na conexão com o banco de dados RDS, pois inicialmente a regra de entrada para acesso público ao banco não estava configurada
 * Falha no teste de conexão do endpoint do DMS com o RDS por o DMS não suportar a versão do postgres usada no RDS (versão 14.6)
-* Erro de módulo não encontrado com o pacote dotenv dentro do cluster EMR ao usar o módulo na aplicação pyspark para salvar as credenciais de acesso
+* Erro de módulo não encontrado com o pacote dotenv dentro do cluster EMR ao usar o módulo na aplicação pyspark para salvar as credenciais de acesso, pois o cluster EMR não tinha o dotenv já instalado
 * Problema de NoneType na execução da aplicação Pyspark, pois o dataframe não estava sendo atribuído a nenhuma variável dentro da função analytics_table
+* Erro ao executar a aplicação Pyspark dentro do cluster EMR pois não estava conseguindo inserir os dados no Redshift devido não ter uma regra de entrada configurada para o acesso público ao Redshift
 * Como conectar o Redshift com o Power BI e com o Amazon Quicksight
 
 Para resolver cada uma delas, foi exigido bastante pesquisa e resiliência, algo que faz parte da rotina de quem trabalha com programação e tecnologia. As dificuldades encontradas foram importantes, pois permitaram a evolução do projeto e o meu desenvolvimento profissional, pois só com as dificuldades e os erros que podemos aprender e melhorar cada vez mais.
+
 
 ## Próximos passos
 Com o desejo de evoluir o projeto e torná-lo ainda mais completo, quero incluir nos próximos meses as seguintes funcionalidades:
