@@ -245,7 +245,21 @@ A segunda visualização mostra os 10 livros mais baratos. O livro _An Abundance
 Essas são apenas algumas das análises possíveis de serem construídas com as ferramentas de BI. A partir delas, os analistas de negócios já conseguem criar dashboards e diversas outras visualizações de dados, conforme desejado.
 
 
-## Problemas encontrados
+## Dificuldades encontradas durante o projeto
+Durante o desenvolvimento do projeto, foram encontrados alguns problemas e dificuldades que precisaram ser resolvidos para que cada etapa fosse concluída e assim, atingir o objetivo final do projeto. 
+Os problemas foram:
+* Erro de conexão do webdriver do navegador firefox com o servidor da página web
+* A conexão com a página url da plataforma bookclub não fechava após navegar para a página do último livro desejado
+* Erro ao executar a modelagem dos dados, pois o tamanho dos caracteres do campo 'name' da tabela books estava pequeno demais e o campo 'id' da tabela books estava dando como duplicado
+* Erro de sintaxe ao tentar inserir strings contendo apóstrofes no banco RDS
+* Erro de formato não suportado nas strings ao tentar inserir os dados no banco RDS, pois algumas continham % e o python não reconhece isso
+* Falha na conexão com o banco de dados RDS, pois inicialmente a regra de entrada para acesso público ao banco não estava configurada
+* Falha no teste de conexão do endpoint do DMS com o RDS por o DMS não suportar a versão do postgres usada no RDS (versão 14.6)
+* Erro de módulo não encontrado com o pacote dotenv dentro do cluster EMR ao usar o módulo na aplicação pyspark para salvar as credenciais de acesso
+* Problema de NoneType na execução da aplicação Pyspark, pois o dataframe não estava sendo atribuído a nenhuma variável dentro da função analytics_table
+* Como conectar o Redshift com o Power BI e com o Amazon Quicksight
+
+Para resolver cada uma delas, foi exigido bastante pesquisa e resiliência, algo que faz parte da rotina de quem trabalha com programação e tecnologia. As dificuldades encontradas foram importantes, pois permitaram a evolução do projeto e o meu desenvolvimento profissional, pois só com as dificuldades e os erros que podemos aprender e melhorar cada vez mais.
 
 ## Próximos passos
 Com o desejo de evoluir o projeto e torná-lo ainda mais completo, quero incluir nos próximos meses as seguintes funcionalidades:
