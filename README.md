@@ -235,9 +235,13 @@ Para acessar os dados do Redshift por meio do Power BI, é preciso configurar as
     
  Terminadas as configurações, o próximo passo é acessar o Quicksight através do console da AWS usando a conta criada. Se o Amazon Redshift não estiver configurado como um serviço que o Quicksight pode acessar, ir no menu Segurança e Permissões, e adicioná-lo. Em seguida, ir no menu Dataset e selecionar o Redshift como fonte dos dados. Configurar a nova fonte definindo um nome para ela (_top10_liked_books_ e depois _top10_prices_), uma instância de ID (redshift-cluster-1), o tipo de conexão (Rede pública), o nome do banco de dados (dev), nome de usuário e senha do banco. Após configurar tudo, selecionar conectar para estabelecer a conexão. Em seguida, selecionar o schema e as tabelas desejadas, e o modo de consulta como SPICE, no qual os dados serão armazenados dentro do Quicksight, podendo ser consultados a qualquer momento. Foram criados dois datasets para esse projeto, o _top10_liked_books_ e o _top10_prices_ referentes às tabelas de mesmo nome. As visualizações geradas a partir desses datasets encontram-se a seguir:
 
-  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/04decfd2-d41c-4958-92c2-745362a39e3c)
-  
-  ![image](https://github.com/Priscaruso/Bookclub_project/assets/83982164/5df45f7b-3f9c-4205-95e9-ecf7df74c7a3)
+<p align='center'>
+  <img src='https://github.com/Priscaruso/Bookclub_project/assets/83982164/04decfd2-d41c-4958-92c2-745362a39e3c'>
+</p>
+
+<p align='center'>
+  <img src='https://github.com/Priscaruso/Bookclub_project/assets/83982164/5df45f7b-3f9c-4205-95e9-ecf7df74c7a3'>
+</p>
 
 
 A primeira visualização consiste em uma tabela contendo os 10 livros mais curtidos na plataforma pelos usuários e suas respectivas categorias, ou seja, são os livros que tem o maior número de estrelas de acordo com a ordem alfabética. Assim, o fato do livro _#HigherSele: Wake Up Your Life. Free Your Soul. Find Your Tribe._ estar na primeira classificação, não significa que ele tem o maior número de estrelas entre os 10, pois todos esses livros tem 5 estrelas, e sim que é o mais curtido segundo a ordem alfabética.
